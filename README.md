@@ -6,3 +6,14 @@
 4. npm install -g webpack
 5. webpack --watch
 6. open test.html
+
+# Known Limitations/Bugs
+
+* All children exist under the video DOM node. Which may not be desirable.
+* Missing components
+* Styling isn't completely understood yet.
+* Figure out extensibility better. Do they just build a react component? or follow a plugin architecture?
+* ?
+
+### Future..
+* React 0.14 migration changes
