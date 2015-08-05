@@ -42,13 +42,16 @@ const apiMethods = {
   src: ['setter', 'getter'],
   textTracks: ['setter', 'getter'],
   videoTracks: ['setter', 'getter'],
-  volumem: ['setter', 'getter'],
+  volume: ['setter', 'getter'],
 
   canPlayType: 'function',
   fastSeek: 'function',
   load: 'function',
   pause: 'function',
   play: 'function',
+
+  mozRequestFullScreen: 'function',
+  mozExitFullScreen: 'function',
 };
 
 function setterGetterMethod(methodName : string) : void {

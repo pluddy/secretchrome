@@ -10,18 +10,24 @@
  */
 
 import Video from './Video';
-import Scrubber from './Scrubber';
-import Controls, { PlayPause } from './Controls';
 import API from './VideoAPI';
 
-export default Video;
+import Scrubber from './Scrubber';
+import Controls, {
+  PlayPause,
+  SlowMotion,
+  Fullscreen,
+} from './Controls';
 
+export default Video;
 export {
   // components
   Scrubber,
 
   Controls,
     PlayPause,
+    SlowMotion,
+    Fullscreen,
 
   // logic
   API

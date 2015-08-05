@@ -32,7 +32,6 @@ export default class Controls extends React.Component {
     MediaEventPool.onMouseLeave(() => this.setState({ hidden: true }));
   }
 
-
   render() {
     return (
       <div
@@ -46,7 +45,11 @@ export default class Controls extends React.Component {
 
 // export child controls
 import PlayPause from './PlayPause';
+import SlowMotion from './SlowMotion';
+import Fullscreen from './Fullscreen';
 
 export {
   PlayPause,
+  SlowMotion,
+  Fullscreen,
 };

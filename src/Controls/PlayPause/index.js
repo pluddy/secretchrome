@@ -12,7 +12,7 @@
 import React from 'react';
 import video from '../../VideoAPI';
 
-export default class PlayIcon extends React.Component {
+export default class PlayPause extends React.Component {
 
   constructor(props, context) {
     super(props, context);

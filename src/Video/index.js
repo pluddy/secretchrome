@@ -13,7 +13,7 @@ import React, { PropTypes } from 'react/addons';
 import { _dispatch } from '../MediaEventPool';
 import { _provideVideoDOMNode } from '../VideoAPI';
 import VideoEventConstants from '../shared/VideoEventConstants';
-
+import verifyChildrenOrder from './VerifyChildrenOrder';
 
 export default class Video extends React.Component {
 
@@ -30,6 +30,8 @@ export default class Video extends React.Component {
     /* eslint-disable */
     console.time('VideoChromePerfTimer');
     /* eslint-enable */
+
+    verifyChildrenOrder(this.children());
   }
 
   getChildContext() {
@@ -62,15 +64,19 @@ export default class Video extends React.Component {
     }
   }
 
-
-  render() {
+  children() {
     let arrayChildren = this.props.children;
 
     if (!Array.isArray(arrayChildren)) {
       arrayChildren = [this.props.children];
     }
 
-    const children = arrayChildren.map(
+    return arrayChildren;
+  }
+
+
+  render() {
+    const children = this.children().map(
       (child) => React.addons.cloneWithProps(child, {key: child.type.name})
     );
 
