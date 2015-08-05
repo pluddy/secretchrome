@@ -21,12 +21,11 @@ export default class Scrubber extends React.Component {
   }
 
   componentDidMount() {
-    MediaEventPool.onCanPlay(this.canPlay);
-    console.log(video);
+    MediaEventPool.onTimeUpdate(this.timeUpdate);
   }
 
-  canPlay() {
-    console.log('can play');
+  timeUpdate(e) {
+    console.log('can play', e);
   }
 
 

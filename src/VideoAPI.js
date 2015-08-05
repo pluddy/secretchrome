@@ -98,7 +98,7 @@ function functionMethod(methodName : string) : void {
 
 
 export default API;
-export function provideVideoDOMNode(_videoDOMNode) {
+export function _provideVideoDOMNode(_videoDOMNode) {
   videoDOMNode = _videoDOMNode;
 }
 

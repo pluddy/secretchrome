@@ -11,8 +11,16 @@
 
 import Video from './Video';
 import Scrubber from './Scrubber';
-import VideoAPI from './VideoAPI';
+import Controls from './Controls';
+import API from './VideoAPI';
 
 export {
-  Video, Scrubber, VideoAPI
+  // master
+  Video,
+
+  // components
+  Scrubber, Controls,
+
+  // logic
+  API
 }

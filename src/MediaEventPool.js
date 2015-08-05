@@ -21,6 +21,8 @@ const topLevelMethods = [
   'onLoadedData',
   'onLoadedMetadata',
   'onLoadStart',
+  'onMouseEnter',
+  'onMouseLeave',
   'onPause',
   'onPlay',
   'onPlaying',
@@ -50,9 +52,9 @@ topLevelMethods.forEach(
   }
 );
 
-export function _dispatch(method) {
+export function _dispatch(method, event) {
   mediaEventPoolContainer[method].forEach(
-    (method) => method()
+    (method) => method(event)
   );
 }
 

@@ -11,7 +11,8 @@
 
 import React, { PropTypes } from 'react/addons';
 import { _dispatch } from '../MediaEventPool';
-import { provideVideoDOMNode } from '../VideoAPI';
+import { _provideVideoDOMNode } from '../VideoAPI';
+import VideoEventConstants from '../shared/VideoEventConstants';
 
 export default class Video extends React.Component {
 
@@ -26,9 +27,7 @@ export default class Video extends React.Component {
 
   getChildContext() {
     return {
-      video: {
-        data: true
-      },
+      video: { data: true },
     }
   }
 
@@ -36,25 +35,39 @@ export default class Video extends React.Component {
     console.timeEnd('VideoChromePerfTimer');
     let video = React.findDOMNode(this.refs.video);
 
-    provideVideoDOMNode(video);
-    video.addEventListener(
-      'canplay',
-      _dispatch('onCanPlay')
-    );
+    _provideVideoDOMNode(video);
+
+    // this can be removed with React 0.14 as Native Video events are handled
+    for (var nativeEventName in VideoEventConstants) {
+      video.addEventListener(
+        nativeEventName,
+        (event) => _dispatch(VideoEventConstants[nativeEventName], event)
+      );
+    }
   }
 
 
   render() {
+    let arrayChildren = this.props.children;
+
+    if (!Array.isArray(arrayChildren)) {
+      arrayChildren = [this.props.children];
+    }
+
+    let children = arrayChildren.map(
+      (child) => React.addons.cloneWithProps(child, {key: child.type.name})
+    );
+
     return (
       <div>
         <video
-          controls={true}
           ref="video"
           src="http://vc.hudl.com/perfcenter/dd7ea145-Hd-559f26f1f5723812b09ab97d.mp4"
+          onMouseEnter={(event) => _dispatch('onMouseEnter', event)}
+          onMouseLeave={(event) => _dispatch('onMouseLeave', event)}
         />
-        {React.addons.cloneWithProps(this.props.children)}
+        {children}
       </div>
     );
   }
-
 }
