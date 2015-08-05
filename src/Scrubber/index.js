@@ -24,8 +24,8 @@ export default class Scrubber extends React.Component {
     MediaEventPool.onTimeUpdate(this.timeUpdate);
   }
 
-  timeUpdate(e) {
-    console.log('can play', e);
+  timeUpdate() {
+    // time is getting updated
   }
 
 

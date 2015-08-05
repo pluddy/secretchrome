@@ -11,16 +11,18 @@
 
 import Video from './Video';
 import Scrubber from './Scrubber';
-import Controls from './Controls';
+import Controls, { PlayPause } from './Controls';
 import API from './VideoAPI';
 
-export {
-  // master
-  Video,
+export default Video;
 
+export {
   // components
-  Scrubber, Controls,
+  Scrubber,
+
+  Controls,
+    PlayPause,
 
   // logic
   API
-}
+};

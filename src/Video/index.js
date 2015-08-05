@@ -14,35 +14,51 @@ import { _dispatch } from '../MediaEventPool';
 import { _provideVideoDOMNode } from '../VideoAPI';
 import VideoEventConstants from '../shared/VideoEventConstants';
 
+
 export default class Video extends React.Component {
 
-  constructor(props, context) {
-    super(props, context);
-    console.time('VideoChromePerfTimer');
+  static propTypes = {
+    children: PropTypes.any,
   }
 
   static childContextTypes = {
     video: PropTypes.object.isRequired,
   }
 
+  constructor(props, context) {
+    super(props, context);
+    /* eslint-disable */
+    console.time('VideoChromePerfTimer');
+    /* eslint-enable */
+  }
+
   getChildContext() {
     return {
       video: { data: true },
-    }
+    };
   }
 
   componentDidMount() {
+    /* eslint-disable */
     console.timeEnd('VideoChromePerfTimer');
-    let video = React.findDOMNode(this.refs.video);
+    /* eslint-enable */
 
+    const video = React.findDOMNode(this.refs.video);
     _provideVideoDOMNode(video);
 
-    // this can be removed with React 0.14 as Native Video events are handled
-    for (var nativeEventName in VideoEventConstants) {
-      video.addEventListener(
-        nativeEventName,
-        (event) => _dispatch(VideoEventConstants[nativeEventName], event)
-      );
+    function dispatchEvent(event) {
+      _dispatch(VideoEventConstants[event.type]);
+    }
+
+    // this can be moved inline with the video declaration
+    // with React 0.14 as Native Video events are handled
+    for (const nativeEventName in VideoEventConstants) {
+      if (VideoEventConstants.hasOwnProperty(nativeEventName)) {
+        video.addEventListener(
+          nativeEventName,
+          dispatchEvent
+        );
+      }
     }
   }
 
@@ -54,7 +70,7 @@ export default class Video extends React.Component {
       arrayChildren = [this.props.children];
     }
 
-    let children = arrayChildren.map(
+    const children = arrayChildren.map(
       (child) => React.addons.cloneWithProps(child, {key: child.type.name})
     );
 

@@ -9,7 +9,7 @@
  * @providesModule API
  */
 
-import API from './MediaEventPool'
+import API from './MediaEventPool';
 
 // gets set by internal video component
 let videoDOMNode;
@@ -51,49 +51,50 @@ const apiMethods = {
   play: 'function',
 };
 
-
-/*
- * generate the apiMethods per necassary attaching to the `videoDOMNode`
- * to recreate a spec worthy interface
- */
-for (let methodName in apiMethods) {
-  const methodType = apiMethods[methodName];
-
-  if (Array.isArray(methodType )) {
-    setterGetterMethod(methodName);
-  } else if (methodType === 'setter') {
-    setterMethod(methodName);
-  } else if (methodType === 'getter') {
-    getterMethod(methodName);
-  } else {
-    functionMethod(methodName);
-  }
-}
-
-
 function setterGetterMethod(methodName : string) : void {
   Object.defineProperty(API, methodName, {
-    set: function(value) { videoDOMNode[methodName] = value; },
-    get: function() { videoDOMNode[methodName]; },
+    set(value) { videoDOMNode[methodName] = value; },
+    get() { videoDOMNode[methodName]; },
   });
 }
 
 function setterMethod(methodName : string) : void {
   Object.defineProperty(API, methodName, {
-    set: function(value) { videoDOMNode[methodName] = value; },
+    set(value) { videoDOMNode[methodName] = value; },
   });
 }
 
 function getterMethod(methodName : string) : void {
   Object.defineProperty(API, methodName, {
-    get: function() { videoDOMNode[methodName]; },
+    get() { videoDOMNode[methodName]; },
   });
 }
 
 function functionMethod(methodName : string) : void {
-  API[methodName] = function() {
+  API[methodName] = () => {
     videoDOMNode[methodName]();
   };
+}
+
+
+/*
+ * generate the apiMethods per necassary attaching to the `videoDOMNode`
+ * to recreate a spec worthy interface
+ */
+for (const methodName in apiMethods) {
+  if (apiMethods.hasOwnProperty(methodName)) {
+    const methodType = apiMethods[methodName];
+
+    if (Array.isArray(methodType )) {
+      setterGetterMethod(methodName);
+    } else if (methodType === 'setter') {
+      setterMethod(methodName);
+    } else if (methodType === 'getter') {
+      getterMethod(methodName);
+    } else {
+      functionMethod(methodName);
+    }
+  }
 }
 
 

@@ -37,24 +37,24 @@ const topLevelMethods = [
   'onWaiting',
 ];
 
-let mediaEventPoolContainer = {};
-let mediaEventPoolMethods = {};
+const mediaEventPoolContainer = {};
+const mediaEventPoolMethods = {};
 topLevelMethods.forEach(
   (methodName) => {
     // create pool container for dispatching
-    mediaEventPoolContainer[methodName] = []
+    mediaEventPoolContainer[methodName] = [];
 
     // create dynamic method for each topLevelMethods
     // to attach functions to events
     mediaEventPoolMethods[methodName] = (fn) => {
       mediaEventPoolContainer[methodName].push(fn);
-    }
+    };
   }
 );
 
 export function _dispatch(method, event) {
   mediaEventPoolContainer[method].forEach(
-    (method) => method(event)
+    (methodCallback) => methodCallback(event)
   );
 }
 

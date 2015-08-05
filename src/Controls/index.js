@@ -11,11 +11,12 @@
 
 import React, { PropTypes } from 'react';
 import MediaEventPool from '../MediaEventPool';
-import video from '../VideoAPI';
-import PlayIcon from './PlayIcon';
-import PauseIcon from './PauseIcon';
 
 export default class Controls extends React.Component {
+
+  static propTypes = {
+    children: PropTypes.any,
+  }
 
   constructor(props, context) {
     super(props, context);
@@ -23,14 +24,7 @@ export default class Controls extends React.Component {
     this.state = {
       hidden: true,
       playing: false,
-    }
-  }
-
-  static propTypes = {
-    controls: PropTypes.shape({
-      playPause: PropTypes.bool,
-      fullscreen: PropTypes.bool,
-    }).isRequired,
+    };
   }
 
   componentDidMount() {
@@ -38,44 +32,21 @@ export default class Controls extends React.Component {
     MediaEventPool.onMouseLeave(() => this.setState({ hidden: true }));
   }
 
-  play() {
-    this.setState({playing: true});
-    video.play();
-  }
-
-  pause() {
-    this.setState({playing: false});
-    video.pause();
-  }
 
   render() {
     return (
       <div
         className={this.state.hidden ? 'hidden controls' : 'controls'}
         onMouseEnter={() => this.setState({hidden: false})} >
-        {this.playControlNode()}
-
-        {this.fullscreenNode()}
+        {this.props.children}
       </div>
     );
   }
-
-  playControlNode() : React.DOM {
-    if (!this.props.controls.playPause) {
-      return;
-    }
-
-    return this.state.playing ?
-      <PauseIcon onClick={() => this.pause()} /> :
-      <PlayIcon onClick={() => this.play()} />
-  }
-
-  fullscreenNode() : React.DOM {
-    if (!this.props.controls.fullscreen) {
-      return;
-    }
-
-    return <div>FullSCREEN!</div>
-  }
-
 }
+
+// export child controls
+import PlayPause from './PlayPause';
+
+export {
+  PlayPause,
+};

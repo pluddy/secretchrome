@@ -1,10 +1,14 @@
-import { Video, Scrubber, Controls } from './src/';
+import Video, { Scrubber, Controls, PlayPause } from './src/';
 import React from 'react';
 
 React.render(
 
   <Video>
-    <Controls controls={{playPause: true}}/>
+
+    <Controls>
+      <PlayPause />
+    </Controls>
+
     <Scrubber />
   </Video>
 
