@@ -9,7 +9,7 @@
 
 # Known Limitations/Bugs
 
-* All children exist under the video DOM node. Which may not be desirable.
+* All children exist as siblings to the video DOM node. Which may not be desirable.
 * Missing components
 * Styling isn't completely understood yet.
 * Figure out extensibility better. Do they just build a react component? or follow a plugin architecture?
