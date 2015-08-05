@@ -17,3 +17,5 @@
 
 ### Future..
 * React 0.14 migration changes
+* Add lots of `invariant` calls to help devs use the tool best
+* Utilize `node.process.ENV` to strip out unnecassary code, like `invariant` calls
