@@ -9,10 +9,13 @@
  * @providesModule Fullscreen
  */
 
-import React from 'react';
-import video from '../../VideoAPI';
+import React, { PropTypes } from 'react';
 
 export default class Fullscreen extends React.Component {
+
+  static contextTypes = {
+    video: PropTypes.instanceOf(HTMLVideoElement).isRequired,
+  }
 
   constructor(props, context) {
     super(props, context);
@@ -30,12 +33,12 @@ export default class Fullscreen extends React.Component {
 
   toggleFullscreen(direction) {
     if (direction === 'open') {
-      video.mozRequestFullScreen();
+      this.context.video.mozRequestFullScreen();
       this.setState({ fullscreen: true });
       return;
     }
 
-    video.mozExitFullScreen();
+    this.context.video.mozExitFullScreen();
     this.setState({ fullscreen: false });
   }
 

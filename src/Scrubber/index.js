@@ -10,22 +10,20 @@
  */
 
 import React, { PropTypes } from 'react';
-import MediaEventPool from '../MediaEventPool';
-import video from '../VideoAPI';
-
 
 export default class Scrubber extends React.Component {
 
   static contextTypes = {
-    video: PropTypes.object.isRequired,
+    video: PropTypes.instanceOf(HTMLVideoElement).isRequired,
+    events: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
-    MediaEventPool.onTimeUpdate(this.timeUpdate);
+    this.context.events.onTimeUpdate(this.timeUpdate);
   }
 
   timeUpdate() {
-    // time is getting updated
+    //console.log('timeupdate');
   }
 
 

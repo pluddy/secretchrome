@@ -9,19 +9,38 @@
  * @providesModule SlowMotion
  */
 
-import React from 'react';
-import video from '../../VideoAPI';
+import React, { PropTypes } from 'react';
 
 export default class SlowMotion extends React.Component {
 
-  playVideo() {
-    video.playbackRate = 0.5;
-    video.play();
+  static contextTypes = {
+    video: PropTypes.instanceOf(HTMLVideoElement).isRequired,
+  }
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      playing: !context.video.paused,
+    };
+  }
+
+  slowMo() {
+    this.context.video.playbackRate = 0.5;
+    this.context.video.play();
+  }
+
+  resume() {
+    this.context.video.playbackRate = 1;
+
+    if (!this.state.playing) {
+      this.context.video.pause();
+    }
   }
 
   render() {
     return (
-      <div onClick={this.playVideo}>
+      <div onMouseDown={this.slowMo.bind(this)} onMouseUp={this.resume.bind(this)} >
 
         <svg xmlns="http://www.w3.org/2000/svg" width="63px" height="64px" viewBox="0 0 63 64" version="1.1">
           <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" >

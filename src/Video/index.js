@@ -9,20 +9,15 @@
  * @providesModule Video
  */
 
-import React, { PropTypes } from 'react/addons';
-import { _dispatch } from '../MediaEventPool';
-import { _provideVideoDOMNode } from '../VideoAPI';
+import React, { PropTypes } from 'react';
+import { _dispatch } from '../shared/MediaEventPool';
 import VideoEventConstants from '../shared/VideoEventConstants';
-import verifyChildrenOrder from './VerifyChildrenOrder';
+import ContextProvider from './ContextProvider';
 
 export default class Video extends React.Component {
 
   static propTypes = {
     children: PropTypes.any,
-  }
-
-  static childContextTypes = {
-    video: PropTypes.object.isRequired,
   }
 
   constructor(props, context) {
@@ -31,12 +26,8 @@ export default class Video extends React.Component {
     console.time('VideoChromePerfTimer');
     /* eslint-enable */
 
-    verifyChildrenOrder(this.children());
-  }
-
-  getChildContext() {
-    return {
-      video: { data: true },
+    this.state = {
+      renderChildren: false,
     };
   }
 
@@ -45,18 +36,21 @@ export default class Video extends React.Component {
     console.timeEnd('VideoChromePerfTimer');
     /* eslint-enable */
 
-    const video = React.findDOMNode(this.refs.video);
-    _provideVideoDOMNode(video);
+    this.video = this.refs.video;
 
     function dispatchEvent(event) {
       _dispatch(VideoEventConstants[event.type]);
     }
 
+    this.video.addEventListener('canplay', () => {
+      this.setState({ renderChildren: true });
+    });
+
     // this can be moved inline with the video declaration
     // with React 0.14 as Native Video events are handled
     for (const nativeEventName in VideoEventConstants) {
       if (VideoEventConstants.hasOwnProperty(nativeEventName)) {
-        video.addEventListener(
+        this.video.addEventListener(
           nativeEventName,
           dispatchEvent
         );
@@ -64,21 +58,17 @@ export default class Video extends React.Component {
     }
   }
 
-  children() {
-    let arrayChildren = this.props.children;
-
-    if (!Array.isArray(arrayChildren)) {
-      arrayChildren = [this.props.children];
-    }
-
-    return arrayChildren;
-  }
-
 
   render() {
-    const children = this.children().map(
-      (child) => React.addons.cloneWithProps(child, {key: child.type.name})
-    );
+    let children;
+
+    if (this.state.renderChildren) {
+      children = (
+        <ContextProvider video={this.video}>
+          {this.props.children}
+        </ContextProvider>
+      );
+    }
 
     return (
       <div>

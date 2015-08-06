@@ -24,7 +24,8 @@
     "invariant": "^2.1.0",
     "jest-cli": "^0.4.18",
     "keymirror": "^0.1.1",
-    "react": "^0.13.3",
+    "react": "^0.14.0-beta1",
+    "react-dom": "^0.14.0-beta1",
     "webpack": "^1.10.5"
   },
   "devDependencies": {

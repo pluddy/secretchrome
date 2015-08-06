@@ -10,7 +10,6 @@
  */
 
 import Video from './Video';
-import API from './VideoAPI';
 
 import Scrubber from './Scrubber';
 import Controls, {
@@ -28,7 +27,4 @@ export {
     PlayPause,
     SlowMotion,
     Fullscreen,
-
-  // logic
-  API
 };

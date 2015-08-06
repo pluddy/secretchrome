@@ -10,12 +10,16 @@
  */
 
 import React, { PropTypes } from 'react';
-import MediaEventPool from '../MediaEventPool';
 
 export default class Controls extends React.Component {
 
   static propTypes = {
     children: PropTypes.any,
+  }
+
+  static contextTypes = {
+    video: PropTypes.instanceOf(HTMLVideoElement).isRequired,
+    events: PropTypes.object.isRequired,
   }
 
   constructor(props, context) {
@@ -28,8 +32,8 @@ export default class Controls extends React.Component {
   }
 
   componentDidMount() {
-    MediaEventPool.onMouseEnter(() => this.setState({ hidden: false }));
-    MediaEventPool.onMouseLeave(() => this.setState({ hidden: true }));
+    this.context.events.onMouseEnter(() => this.setState({ hidden: false }));
+    this.context.events.onMouseLeave(() => this.setState({ hidden: true }));
   }
 
   render() {
