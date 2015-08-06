@@ -76,7 +76,9 @@ export default class Video extends React.Component {
           preload={true}
           onMouseEnter={(event) => _dispatch('onMouseEnter', event)}
           onMouseLeave={(event) => _dispatch('onMouseLeave', event)}
-        />
+        >
+        </video>
+
         {children}
       </div>
     );

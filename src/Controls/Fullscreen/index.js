@@ -44,7 +44,7 @@ export default class Fullscreen extends React.Component {
 
   enterFullscreenDOM() {
     return (
-      <div onClick={this.toggleFullscreen.bind(this, 'open')}>
+      <div onClick={this.toggleFullscreen.bind(this, 'open')} style={{float: 'right'}}>
         <svg version="1.1" baseProfile="basic"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 612 792">
           <g>
             <polygon points="184.5,339.5 249.4,274.6 136,161.2 218.6,90 0.2,90.2 0,308.6 70.8,225.8 	"/>

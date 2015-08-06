@@ -27,35 +27,30 @@ export default class Controls extends React.Component {
 
     this.state = {
       playing: false,
+      focused: false,
       opacity: 0,
     };
   }
 
   componentDidMount() {
     this.context.events.onMouseEnter(() => this.setState({ opacity: 1 }));
-    this.context.events.onMouseLeave(() => this.setState({ opacity: 0 }));
+    this.context.events.onMouseLeave(() => {
+      if (!this.state.focused) {
+        this.setState({ opacity: 0 });
+      }
+    });
   }
 
   render() {
     return (
       <div
-        className='controls'
+        className="controls"
         style={{opacity: this.state.opacity}}
-        onMouseEnter={() => this.setState({hidden: false})} >
+        onMouseEnter={() => this.setState({focused: true, opacity: 1})}
+        onMouseLeave={() => this.setState({focused: false, opacity: 0})} >
 
         {this.props.children}
       </div>
     );
   }
 }
-
-// export child controls
-import PlayPause from './PlayPause';
-import SlowMotion from './SlowMotion';
-import Fullscreen from './Fullscreen';
-
-export {
-  PlayPause,
-  SlowMotion,
-  Fullscreen,
-};

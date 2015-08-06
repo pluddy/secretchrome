@@ -12,11 +12,10 @@
 import Video from './Video';
 
 import Scrubber from './Scrubber';
-import Controls, {
-  PlayPause,
-  SlowMotion,
-  Fullscreen,
-} from './Controls';
+import Controls from './Controls';
+import PlayPause from './Controls/PlayPause';
+import SlowMotion from './Controls/SlowMotion';
+import Fullscreen from './Controls/Fullscreen';
 
 export default Video;
 export {
