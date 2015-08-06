@@ -42,9 +42,7 @@ export default class Video extends React.Component {
       _dispatch(VideoEventConstants[event.type]);
     }
 
-    this.video.addEventListener('canplay', () => {
-      this.setState({ renderChildren: true });
-    });
+    this.setState({ renderChildren: true });
 
     // this can be moved inline with the video declaration
     // with React 0.14 as Native Video events are handled
@@ -75,6 +73,7 @@ export default class Video extends React.Component {
         <video
           ref="video"
           src="http://vc.hudl.com/perfcenter/dd7ea145-Hd-559f26f1f5723812b09ab97d.mp4"
+          preload={true}
           onMouseEnter={(event) => _dispatch('onMouseEnter', event)}
           onMouseLeave={(event) => _dispatch('onMouseLeave', event)}
         />

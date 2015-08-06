@@ -26,21 +26,23 @@ export default class Controls extends React.Component {
     super(props, context);
 
     this.state = {
-      hidden: true,
       playing: false,
+      opacity: 0,
     };
   }
 
   componentDidMount() {
-    this.context.events.onMouseEnter(() => this.setState({ hidden: false }));
-    this.context.events.onMouseLeave(() => this.setState({ hidden: true }));
+    this.context.events.onMouseEnter(() => this.setState({ opacity: 1 }));
+    this.context.events.onMouseLeave(() => this.setState({ opacity: 0 }));
   }
 
   render() {
     return (
       <div
-        className={this.state.hidden ? 'hidden controls' : 'controls'}
+        className='controls'
+        style={{opacity: this.state.opacity}}
         onMouseEnter={() => this.setState({hidden: false})} >
+
         {this.props.children}
       </div>
     );
