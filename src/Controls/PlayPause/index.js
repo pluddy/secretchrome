@@ -9,10 +9,13 @@
  * @providesModule PlayPause
  */
 
-import React from 'react';
-import video from '../../VideoAPI';
+import React, { PropTypes } from 'react';
 
 export default class PlayPause extends React.Component {
+
+  static contextTypes = {
+    video: PropTypes.instanceOf(HTMLVideoElement).isRequired,
+  }
 
   constructor(props, context) {
     super(props, context);
@@ -31,12 +34,12 @@ export default class PlayPause extends React.Component {
 
   playVideo() {
     this.setState({playing: true});
-    video.play();
+    this.context.video.play();
   }
 
   pauseVideo() {
     this.setState({playing: false});
-    video.pause();
+    this.context.video.pause();
   }
 
 
