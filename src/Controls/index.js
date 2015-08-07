@@ -33,7 +33,9 @@ export default class Controls extends React.Component {
   }
 
   componentDidMount() {
-    this.context.events.onMouseEnter(() => this.setState({ opacity: 1 }));
+    this.context.events.onMouseEnter(() =>
+        this.setState({ opacity: 1 })
+    );
     this.context.events.onMouseLeave(() => {
       if (!this.state.focused) {
         this.setState({ opacity: 0 });
@@ -47,7 +49,7 @@ export default class Controls extends React.Component {
         className="controls"
         style={{opacity: this.state.opacity}}
         onMouseEnter={() => this.setState({focused: true, opacity: 1})}
-        onMouseLeave={() => this.setState({focused: false, opacity: 0})} >
+        onMouseLeave={() => this.setState({focused: false})} >
 
         {this.props.children}
       </div>

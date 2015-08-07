@@ -16,6 +16,8 @@ import Controls from './Controls';
 import PlayPause from './Controls/PlayPause';
 import SlowMotion from './Controls/SlowMotion';
 import Fullscreen from './Controls/Fullscreen';
+import Mute from './Controls/Mute';
+import Hudl from './Controls/Hudl';
 
 export default Video;
 export {
@@ -26,4 +28,6 @@ export {
     PlayPause,
     SlowMotion,
     Fullscreen,
+    Mute,
+    Hudl,
 };
