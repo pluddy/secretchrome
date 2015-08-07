@@ -69,12 +69,11 @@ export default class Video extends React.Component {
     }
 
     return (
-      <div className="video-container">
+      <div>
         <video
           ref="video"
           src="http://vc.hudl.com/perfcenter/dd7ea145-Hd-559f26f1f5723812b09ab97d.mp4"
           preload={true}
-          autoPlay
           onMouseEnter={(event) => _dispatch('onMouseEnter', event)}
           onMouseLeave={(event) => _dispatch('onMouseLeave', event)}
         >

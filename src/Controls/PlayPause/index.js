@@ -48,13 +48,10 @@ export default class PlayPause extends React.Component {
       <div onClick={this.pauseVideo.bind(this)}>
         <svg
           {...this.props}
-          version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 612 792">
+          version="1.1" baseProfile="basic" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
         >
           <title>Pause</title>
-          <g fill="#FFFFFF">
-            <polygon fill="#FFFFFF" points="0,0 0,792 250,792 250,0"/>
-            <polygon fill="#FFFFFF" points="362,0 362,792 612,792 612,0"/>
-          </g>
+          <path d="M3 0h14v48H3V0zM30.7 0h14v48h-14V0z"/>
         </svg>
       </div>
     );
@@ -69,7 +66,7 @@ export default class PlayPause extends React.Component {
           xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 612 792"
         >
           <title>Play</title>
-          <polygon  fill="#FFFFFF" points="0,0 0,792 612,396 "/>
+          <polygon fill="#231F20" points="0,19.4 0,772.6 612,396 "/>
         </svg>
       </div>
     );

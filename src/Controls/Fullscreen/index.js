@@ -33,28 +33,12 @@ export default class Fullscreen extends React.Component {
 
   toggleFullscreen(direction) {
     if (direction === 'open') {
-      //this.context.video.mozRequestFullScreen();
-      if (document.requestFullscreen) {
-        document.requestFullscreen();
-      } else if (document.mozRequestFullScreen) {
-        document.mozRequestFullScreen();
-      } else if (document.webkitRequestFullscreen) {
-        document.webkitRequestFullscreen();
-      } else if (document.msRequestFullscreen) {
-        document.msRequestFullscreen();
-      }
+      this.context.video.mozRequestFullScreen();
       this.setState({ fullscreen: true });
       return;
     }
 
-    //this.context.video.mozExitFullScreen();
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
+    this.context.video.mozExitFullScreen();
     this.setState({ fullscreen: false });
   }
 
@@ -62,7 +46,7 @@ export default class Fullscreen extends React.Component {
     return (
       <div onClick={this.toggleFullscreen.bind(this, 'open')} style={{float: 'right'}}>
         <svg version="1.1" baseProfile="basic"xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 612 792">
-          <g fill="#FFFFFF" >
+          <g>
             <polygon points="184.5,339.5 249.4,274.6 136,161.2 218.6,90 0.2,90.2 0,308.6 70.8,225.8 	"/>
             <polygon points="541.4,566.4 427.6,452.6 362.7,517.5 476.2,631 393.4,702 612,702 612,483.4 	"/>
             <polygon points="427.5,339.4 541,226 612,308.6 611.9,90.2 393.4,90 476.4,160.8 362.6,274.6 	"/>
@@ -76,9 +60,9 @@ export default class Fullscreen extends React.Component {
 
   exitFullscreenDOM() {
     return (
-      <div onClick={this.toggleFullscreen.bind(this, 'close')} style={{float: 'right'}}>
+      <div onClick={this.toggleFullscreen.bind(this, 'close')}>
         <svg version="1.1" baseProfile="basic" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 612 792">
-          <g fill="#FFFFFF" >
+          <g>
             <polygon points="611.8,154.9 546.9,90 433.5,203.4 353,113.5 353,348.9 588.4,348.9 498,268.6 	"/>
             <polygon points="114,523.4 0.2,637.1 65.1,702 178.5,588.6 258.9,678.4 258.9,443.1 23.5,443.1 	"/>
             <polygon points="612,636.9 498.6,523.5 588.4,443.1 353,443.1 353,678.4 433.4,588.1 547.1,701.8 	"/>

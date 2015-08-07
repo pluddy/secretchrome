@@ -1,4 +1,4 @@
-import Video, { Scrubber, Controls, PlayPause, SlowMotion, Fullscreen, Mute, Hudl } from './src/';
+import Video, { Scrubber, Controls, PlayPause, SlowMotion, Fullscreen} from './src/';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
@@ -8,9 +8,7 @@ ReactDOM.render(
     <Controls>
       <PlayPause />
       <SlowMotion />
-      <Hudl />
       <Fullscreen />
-      <Mute />
     </Controls>
 
     <Scrubber />
