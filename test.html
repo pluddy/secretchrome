@@ -4,16 +4,40 @@
     <title>Hi there</title>
     <meta charset="utf-8"/>
     <style>
-      .hidden { display: none; }
+      .hidden {
+        display: none;
+      }
       .controls {
         background: rgba(35, 42, 49, .4) none repeat scroll 0% 0%;
-        padding: 1rem;
+        padding:1rem;
         cursor: pointer;
         transition: opacity .2s ease-out;
       }
-      video { width: 100%; }
-      .controls > div { display: inline-block; }
-      svg { height: 40px; }
+      .controls > .hudl {
+        padding-left: 1rem
+      }
+      video {
+        width: 100%;
+      }
+      .controls > div {
+        display: inline-block;
+      }
+      svg {
+        height: 40px;
+        padding-left: .75rem;
+        padding-right: .75rem
+      }
+      .video-container {
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: rgba(0,0,0,1);
+      }
+      body {
+        margin: 0px;
+        background-color: rgba(0,0,0,1);
+      }
     </style>
   </head>
   <body>

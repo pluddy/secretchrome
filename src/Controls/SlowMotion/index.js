@@ -42,11 +42,11 @@ export default class SlowMotion extends React.Component {
     return (
       <div onMouseDown={this.slowMo.bind(this)} onMouseUp={this.resume.bind(this)} >
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="63px" height="64px" viewBox="0 0 63 64" version="1.1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="63px" height="64px" viewBox="0 0 64 64" version="1.1">
           <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd" >
-            <g id="slowforward-alt" fill="#000000">
+            <g id="slowforward-alt" fill="#FFFFFF" >
               <g id="slow_rwd_3_">
-                <path d="M19.4782609 64 L19.4782609 0 L62.4269913 31.5 L19.4782609 64 Z" id="Shape"/>
+                <path d="M20 64 L20 0 L64 32 L20 64 Z" id="Shape"/>
                 <rect id="Rectangle-path" x="0" y="0" width="11.1" height="64"/>
               </g>
             </g>
