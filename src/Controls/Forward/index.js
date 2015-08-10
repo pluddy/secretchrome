@@ -20,6 +20,7 @@ export default class Forward extends React.Component {
 
   forward(interval) {
     this.context.video.currentTime = this.context.video.currentTime + interval;
+    console.log('Foward5 - currentTime: ' + this.context.video.currentTime);
   }
 
   render() {

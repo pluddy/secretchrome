@@ -20,6 +20,7 @@ export default class Backward extends React.Component {
 
   backward(interval) {
     this.context.video.currentTime = this.context.video.currentTime - interval;
+    console.log('Backward5 - currentTime: ' + this.context.video.currentTime);
   }
 
   render() {
