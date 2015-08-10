@@ -14,6 +14,8 @@ import Video from './Video';
 import Scrubber from './Scrubber';
 import Controls from './Controls';
 import PlayPause from './Controls/PlayPause';
+import Forward from './Controls/Forward';
+import Backward from './Controls/Backward';
 import SlowMotion from './Controls/SlowMotion';
 import Fullscreen from './Controls/Fullscreen';
 import Mute from './Controls/Mute';
@@ -26,6 +28,8 @@ export {
 
   Controls,
     PlayPause,
+    Forward,
+    Backward,
     SlowMotion,
     Fullscreen,
     Mute,

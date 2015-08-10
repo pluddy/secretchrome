@@ -33,28 +33,14 @@ export default class Fullscreen extends React.Component {
 
   toggleFullscreen(direction) {
     if (direction === 'open') {
-      //this.context.video.mozRequestFullScreen();
-      if (document.requestFullscreen) {
-        document.requestFullscreen();
-      } else if (document.mozRequestFullScreen) {
-        document.mozRequestFullScreen();
-      } else if (document.webkitRequestFullscreen) {
-        document.webkitRequestFullscreen();
-      } else if (document.msRequestFullscreen) {
-        document.msRequestFullscreen();
-      }
+      document.requestFullscreen = document.requestFullscreen || document.mozRequestFullScreen || document.webkitRequestFullscreen || document.msRequestFullscreen;
+      document.requestFullscreen();
       this.setState({ fullscreen: true });
       return;
     }
 
-    //this.context.video.mozExitFullScreen();
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
+    document.exitFullscreen = document.exitFullscreen || document.mozCancelFullScreen || document.webkitExitFullscreen;
+    document.exitFullscreen();
     this.setState({ fullscreen: false });
   }
 

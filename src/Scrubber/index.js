@@ -30,8 +30,8 @@ export default class Scrubber extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => video.currentTime = 0}>Beginning</button>
-        <button onClick={() => video.currentTime = 5}>Forward</button>
+        <button onClick={() => this.context.video.currentTime = 0}>Beginning</button>
+        <button onClick={() => this.context.video.currentTime = 5}>Forward</button>
       </div>
     );
   }

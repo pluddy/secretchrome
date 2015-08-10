@@ -20,7 +20,7 @@ export default {
   ended: 'onEnded',
   error: 'onError',
   loadeddata: 'onLoadedData',
-  lodaedmetadata: 'onLoadedMetadata',
+  loadedmetadata: 'onLoadedMetadata',
   loadstart: 'onLoadStart',
   pause: 'onPause',
   play: 'onPlay',
